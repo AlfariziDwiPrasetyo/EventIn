@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { signOutUser } from "./logout/actions";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   "use server";
@@ -15,7 +16,7 @@ export default async function Home() {
     <main className="">
       <p>{data.user.email}</p>
       <form action="">
-        <button formAction={signOutUser}>logout</button>
+        <Button formAction={signOutUser}>logout</Button>
       </form>
     </main>
   );
