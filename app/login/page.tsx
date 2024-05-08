@@ -1,14 +1,15 @@
-import { login, signup } from "./actions";
+import LoginForm from "@/components/LoginForm";
+import React from "react";
 
-export default function LoginPage() {
+function page() {
   return (
-    <form>
-      <label htmlFor="email">Email:</label>
-      <input id="email" name="email" type="email" required />
-      <label htmlFor="password">Password:</label>
-      <input id="password" name="password" type="password" required />
-      <button formAction={login}>Log in</button>
-      <button formAction={signup}>Sign up</button>
-    </form>
+    <div className="flex flex-col items-center justify-center">
+      <h1 className="text-center font-bold text-3xl">Login</h1>
+      <div className="mt-10 w-full">
+        <LoginForm />
+      </div>
+    </div>
   );
 }
+
+export default page;
