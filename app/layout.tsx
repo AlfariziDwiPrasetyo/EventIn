@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -19,10 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased flex items-center justify-center",
+          "bg-background font-sans antialiased flex flex-col items-center justify-center",
           montserrat.variable
         )}
       >
+        <Navbar />
         {children}
       </body>
     </html>
