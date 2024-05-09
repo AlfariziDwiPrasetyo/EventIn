@@ -18,7 +18,7 @@ function Navbar() {
               "lg:text-xl flex font-pinyon parisienne mr-6 space-x-2 items-center font-bold"
             }
           >
-            <p className="text-lg">EventIn</p>
+            <p className="text-lg text-primary">EventIn</p>
           </Link>
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-2">

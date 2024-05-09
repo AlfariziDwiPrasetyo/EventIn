@@ -18,8 +18,8 @@ function AuthForm() {
         variables: {
           default: {
             colors: {
-              brand: "#1e1e1e",
-              brandAccent: "#2e2e2e",
+              brand: "#5d32f5",
+              brandAccent: "#6E4BFD",
             },
           },
         },

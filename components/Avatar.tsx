@@ -13,13 +13,14 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 
 function AvatarProfile() {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean | null>(null);
   useEffect(() => {
     const getLoginUser = async () => {
       const supabase = createClient();
       const { data, error } = await supabase.auth.getUser();
       if (error) {
         console.log("You need to login first");
+        setIsLogin(false);
         return;
       }
       setIsLogin(true);
@@ -36,6 +37,10 @@ function AvatarProfile() {
       setIsLogin(false);
     }
   };
+
+  if (isLogin === null) {
+    return null;
+  }
 
   return isLogin ? (
     <DropdownMenu>
@@ -57,9 +62,9 @@ function AvatarProfile() {
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (
-    <Button>
-      <Link href="/login">Login</Link>
-    </Button>
+    <Link href="/login">
+      <Button>Login</Button>
+    </Link>
   );
 }
 
