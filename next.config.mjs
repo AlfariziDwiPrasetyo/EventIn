@@ -9,6 +9,7 @@ const nextConfig = {
         pathname: "**",
       },
     ],
+    domains: ["plus.unsplash.com"],
   },
 };
 
