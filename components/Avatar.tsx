@@ -14,6 +14,10 @@ import Link from "next/link";
 
 function AvatarProfile() {
   const [isLogin, setIsLogin] = useState<boolean | null>(null);
+  const [avatarData, setAvatarData] = useState({
+    name: "",
+    image: "",
+  });
   useEffect(() => {
     const getLoginUser = async () => {
       const supabase = createClient();
@@ -24,6 +28,11 @@ function AvatarProfile() {
         return;
       }
       setIsLogin(true);
+      setAvatarData({
+        name: data.user.user_metadata.name,
+        image: data.user.user_metadata.picture,
+      });
+      console.log(data);
     };
     getLoginUser();
   }, []);
@@ -46,12 +55,12 @@ function AvatarProfile() {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar className="w-6 h-6 md:w-8 md:h-8">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={avatarData.image} />
+          <AvatarFallback>{avatarData.name}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="py-4">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{avatarData.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem>Billing</DropdownMenuItem>
