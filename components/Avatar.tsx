@@ -45,17 +45,15 @@ function AvatarProfile() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="py-4">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem>Billing</DropdownMenuItem>
         <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>
-          <form action={handleLogout}>
-            <Button className="w-full">Logout</Button>
-          </form>
-        </DropdownMenuItem>
+        <form action={handleLogout}>
+          <Button className="w-full mt-3">Logout</Button>
+        </form>
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (
