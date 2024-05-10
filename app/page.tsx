@@ -13,12 +13,6 @@ export default async function Home() {
         <CardItem />
         <CardItem />
         <CardItem />
-        <CardItem />
-        <CardItem />
-        <CardItem />
-        <CardItem />
-        <CardItem />
-        <CardItem />
       </div>
     </div>
   );
