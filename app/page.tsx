@@ -1,6 +1,8 @@
 import CardItem from "@/components/CardItem";
+import { assignDefaultRole } from "./action";
 
 export default async function Home() {
+  await assignDefaultRole();
   return (
     <div className="flex flex-col justify-center items-center mt-12">
       <h1 className="font-bold text-3xl tracking-tight text-primary">
