@@ -11,6 +11,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { getUserRole } from "@/app/action";
+
+interface UserRole {
+  role: string | undefined;
+}
 
 function AvatarProfile() {
   const [isLogin, setIsLogin] = useState<boolean | null>(null);
@@ -18,6 +23,8 @@ function AvatarProfile() {
     name: "",
     image: "",
   });
+  const [userRole, setUserRole] = useState<UserRole[]>();
+
   useEffect(() => {
     const getLoginUser = async () => {
       const supabase = createClient();
@@ -27,12 +34,13 @@ function AvatarProfile() {
         setIsLogin(false);
         return;
       }
+      const role = await getUserRole();
       setIsLogin(true);
+      setUserRole(role);
       setAvatarData({
         name: data.user.user_metadata.name,
         image: data.user.user_metadata.picture,
       });
-      console.log(data);
     };
     getLoginUser();
   }, []);
@@ -63,8 +71,9 @@ function AvatarProfile() {
         <DropdownMenuLabel>{avatarData.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
+        {userRole?.[0].role == "admin" ? (
+          <DropdownMenuItem>Dashboard</DropdownMenuItem>
+        ) : null}
         <form action={handleLogout}>
           <Button className="w-full mt-3">Logout</Button>
         </form>
