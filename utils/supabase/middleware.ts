@@ -1,3 +1,4 @@
+import { getUserRole } from "@/app/action";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
@@ -54,11 +55,30 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  const user = await supabase.auth.getUser();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+  const { data: role } = await supabase
+    .from("roles")
+    .select("role")
+    .eq("id_user", user?.id);
 
-  if (request.nextUrl.pathname.startsWith("/dashboard") && user.error) {
+  if (request.nextUrl.pathname.startsWith("/dashboard") && error) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
+  if (
+    request.nextUrl.pathname.startsWith("/dashboard") &&
+    role?.[0].role !== "admin"
+  ) {
+    return NextResponse.redirect(new URL("/error", request.url));
+  }
+  // if (
+  //   request.nextUrl.pathname.startsWith("/dashboard") &&
+  //   role?.[0].role !== "admin"
+  // ) {
+  //   return NextResponse.redirect(new URL("/error", request.url));
+  // }
   return response;
 }
