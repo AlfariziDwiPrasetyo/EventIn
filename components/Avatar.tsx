@@ -12,6 +12,7 @@ import {
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { getUserRole } from "@/app/action";
+import { signOutUser } from "@/app/logout/actions";
 
 interface UserRole {
   role: string | undefined;
@@ -46,13 +47,8 @@ function AvatarProfile() {
   }, []);
 
   const handleLogout = async () => {
-    const supabase = createClient();
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error("Error signing out:", error.message);
-    } else {
-      setIsLogin(false);
-    }
+    await signOutUser();
+    setIsLogin(false);
   };
 
   if (isLogin === null) {
