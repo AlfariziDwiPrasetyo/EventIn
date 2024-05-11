@@ -1,5 +1,5 @@
 import CardItem from "@/components/CardItem";
-import { assignDefaultRole } from "./action";
+import { assignDefaultRole } from "../action";
 
 export default async function Home() {
   await assignDefaultRole();

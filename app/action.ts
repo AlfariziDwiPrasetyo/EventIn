@@ -1,14 +1,17 @@
 "use server";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 const supabase = createClient();
 
 export async function getUserId() {
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
 
   if (!user) {
+    console.log("Cant get userId", error?.message);
     return;
   }
 
@@ -17,11 +20,14 @@ export async function getUserId() {
 
 export async function getUserRole() {
   const userId = await getUserId();
+
   const { data: role, error } = await supabase
     .from("roles")
     .select("role")
     .eq("id_user", userId);
+
   if (error) {
+    console.log("error cant get user role", error.message);
     return;
   }
   return role;

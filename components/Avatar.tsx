@@ -67,8 +67,11 @@ function AvatarProfile() {
         <DropdownMenuLabel>{avatarData.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Tickets</DropdownMenuItem>
         {userRole?.[0].role == "admin" ? (
-          <DropdownMenuItem>Dashboard</DropdownMenuItem>
+          <Link href="/dashboard">
+            <DropdownMenuItem>Dashboard</DropdownMenuItem>
+          </Link>
         ) : null}
         <form action={handleLogout}>
           <Button className="w-full mt-3">Logout</Button>
