@@ -74,11 +74,5 @@ export async function updateSession(request: NextRequest) {
   ) {
     return NextResponse.redirect(new URL("/error", request.url));
   }
-  // if (
-  //   request.nextUrl.pathname.startsWith("/dashboard") &&
-  //   role?.[0].role !== "admin"
-  // ) {
-  //   return NextResponse.redirect(new URL("/error", request.url));
-  // }
   return response;
 }
