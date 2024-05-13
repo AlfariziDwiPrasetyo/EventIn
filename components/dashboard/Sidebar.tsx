@@ -10,8 +10,10 @@ function Sidebar() {
     await signOutUser();
   };
   return (
-    <div className="h-full w-64 bg-background hidden md:block border-r-1">
-      <div className="p-5 text-primary font-bold">Eventin</div>
+    <div className="h-full w-64 bg-background hidden md:block border-r">
+      <Link href={"/"}>
+        <div className="p-5 text-primary font-bold">Eventin</div>
+      </Link>
       <ul className="space-y-2">
         {navItems.map((item, index) => {
           const Icon = Icons[item.icon];
