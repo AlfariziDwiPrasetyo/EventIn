@@ -47,7 +47,7 @@ export async function assignDefaultRole() {
   }
 
   if (roles.length > 0) {
-    console.log("User already has a role:", roles);
+    // console.log("User already has a role:", roles);
     return;
   }
 

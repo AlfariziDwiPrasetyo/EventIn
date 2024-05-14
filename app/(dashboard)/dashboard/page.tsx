@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,8 +8,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { createClient } from "@/utils/supabase/adminClient";
 
 export default function page() {
+  async function getAllUser() {
+    const supabase = createClient();
+    const { data, error } = await supabase.auth.admin.listUsers();
+    console.log({ data });
+    console.log({ error });
+    return data;
+  }
+
+  getAllUser();
+
   return (
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">

@@ -18,7 +18,7 @@ function Sidebar() {
         {navItems.map((item, index) => {
           const Icon = Icons[item.icon];
           return (
-            <li>
+            <li key={index}>
               <Link
                 key={index}
                 href={item.link}
