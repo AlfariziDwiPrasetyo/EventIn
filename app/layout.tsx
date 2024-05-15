@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "bg-background font-sans antialiased flex items-center justify-center flex-col",
+          "bg-background font-sans antialiased flex-col flex items-center justify-center",
           montserrat.variable
         )}
       >

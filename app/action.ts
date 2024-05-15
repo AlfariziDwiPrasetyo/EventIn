@@ -63,7 +63,21 @@ export async function assignDefaultRole() {
 
   if (error) {
     console.log("Error cant assign the role ", error.message);
+    return;
   }
 
   return console.log({ userid: userId });
+}
+
+export async function getUserRoleById(id: string) {
+  const { data, error } = await supabase
+    .from("roles")
+    .select("role")
+    .eq("id_user", id);
+
+  if (error) {
+    console.log("Error cant find the role", error.message);
+  }
+
+  return data;
 }
