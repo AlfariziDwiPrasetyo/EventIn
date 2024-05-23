@@ -13,17 +13,17 @@ export const navItems: navItem[] = [
   },
   {
     title: "Events",
-    link: "/event",
+    link: "/dashboard/event",
     icon: "event",
   },
   {
     title: "Submitted Event",
-    link: "/submitted-Event",
+    link: "/dashboard/submitted-event",
     icon: "submittedEvent",
   },
   {
     title: "Setting",
-    link: "/setting",
+    link: "/dashboard/setting",
     icon: "setting",
   },
 ];
