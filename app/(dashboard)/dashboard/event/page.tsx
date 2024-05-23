@@ -25,14 +25,14 @@ export default async function page() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink className="font-semibold">User</BreadcrumbLink>
+            <BreadcrumbLink className="font-semibold">Events</BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <div className="flex flex-col space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Users</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Events</h2>
         <p className="tracking-tight text-md text-muted-foreground">
-          Manage users (Client side table functionalities.)
+          Manage events (Client side table functionalities.)
         </p>
       </div>
       <Separator />
