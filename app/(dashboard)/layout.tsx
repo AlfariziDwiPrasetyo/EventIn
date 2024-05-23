@@ -19,12 +19,7 @@ export default function DashboardLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          "bg-background font-sans antialiased",
-          montserrat.variable
-        )}
-      >
+      <body className={cn("bg-background font-sans", montserrat.variable)}>
         <Header />
         <div className="flex h-screen overflow-hidden">
           <Sidebar />

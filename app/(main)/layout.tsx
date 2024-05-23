@@ -18,14 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          "bg-background font-sans antialiased flex flex-col items-center justify-center",
-          montserrat.variable
-        )}
-      >
+      <body className={cn("bg-background font-sans ", montserrat.variable)}>
         <Navbar />
-        {children}
+        <main className="antialiased flex flex-col items-center justify-center">
+          {children}
+        </main>
       </body>
     </html>
   );
