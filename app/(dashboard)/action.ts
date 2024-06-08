@@ -2,6 +2,7 @@
 import { createClient } from "@/utils/supabase/adminClient";
 import { getUserRoleById } from "../action";
 import { Users } from "./dashboard/user/columns";
+import { revalidatePath } from "next/cache";
 
 export async function getAllUser() {
   const supabase = createClient();

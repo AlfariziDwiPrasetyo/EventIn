@@ -35,7 +35,7 @@ export const columns: ColumnDef<Users>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const users = row.original;
 
       return (
         <DropdownMenu>
@@ -47,12 +47,14 @@ export const columns: ColumnDef<Users>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem>Delete User</DropdownMenuItem>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => {
+                console.log(users);
+              }}
             >
-              Delete User
+              Update User
             </DropdownMenuItem>
-            <DropdownMenuItem>Update User</DropdownMenuItem>
             <DropdownMenuItem>Change Role</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

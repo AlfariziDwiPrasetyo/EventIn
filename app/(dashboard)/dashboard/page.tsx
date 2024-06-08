@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import CardItem from "@/components/CardItem";
 
 export default function page() {
   return (
@@ -134,6 +135,21 @@ export default function page() {
             <CardContent></CardContent>
           </Card>
         </div>
+      </div>
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <CardItem />
+        <CardItem />
+
+        <CardItem />
+        <CardItem />
+        <CardItem />
+        <CardItem />
+        <CardItem />
+        <CardItem />
+        <CardItem />
+        <CardItem />
+        <CardItem />
+        <CardItem />
       </div>
     </ScrollArea>
   );
