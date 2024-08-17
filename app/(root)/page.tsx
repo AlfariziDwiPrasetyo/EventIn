@@ -20,9 +20,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="flex w-full flex-col gap-5 md:flex-row">
-        Search Category
-      </div>
+      <div className="flex w-full flex-col gap-5 md:flex-row"></div>
     </>
   );
 }
