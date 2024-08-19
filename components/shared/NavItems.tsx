@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const NavItems = () => {
+const NavItems = ({ ...restProps }) => {
   const pathname = usePathname();
 
   return (
@@ -18,7 +18,9 @@ const NavItems = () => {
               isActive && "text-primary"
             } p-medium-16 whitespace-nowrap flex-center`}
           >
-            <Link href={link.route}>{link.label}</Link>
+            <Link href={link.route} {...restProps}>
+              {link.label}
+            </Link>
           </li>
         );
       })}

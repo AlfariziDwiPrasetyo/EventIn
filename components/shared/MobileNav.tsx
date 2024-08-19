@@ -6,6 +6,7 @@ import {
   SheetHeader,
   SheetContent,
   SheetDescription,
+  SheetClose,
 } from "../ui/sheet";
 import { AlignRight } from "lucide-react";
 import Link from "next/link";
@@ -24,7 +25,9 @@ const MobileNav = () => {
             Eventin
           </Link>
           <Separator className="border border-gray-100" />
-          <NavItems />
+          <SheetClose asChild>
+            <NavItems />
+          </SheetClose>
         </SheetContent>
       </Sheet>
     </nav>
