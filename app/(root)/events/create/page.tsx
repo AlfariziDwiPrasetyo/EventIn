@@ -7,6 +7,8 @@ import React from "react";
 function page() {
   const { userId } = useAuth();
 
+  console.log(userId);
+
   return (
     <>
       <section className="py-5 md:py-7">
