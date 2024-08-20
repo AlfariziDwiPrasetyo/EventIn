@@ -80,12 +80,6 @@ export async function POST(req: Request) {
       });
     }
 
-    await clerkClient.users.updateUserMetadata(id, {
-      publicMetadata: {
-        userId: "THIS SHOULD BE USER ID",
-      },
-    });
-
     return NextResponse.json({ message: "OK", user: newUser });
   }
 
