@@ -10,7 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.1",
+    "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-alert-dialog": "^1.1.1",
+    "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@uploadthing/react": "^6.7.2",
@@ -22,11 +27,14 @@
     "next": "14.2.5",
     "query-string": "^9.1.0",
     "react": "^18",
+    "react-datepicker": "^7.3.0",
     "react-dom": "^18",
+    "react-hook-form": "^7.52.2",
     "svix": "^1.30.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "uploadthing": "^6.13.2"
+    "uploadthing": "^6.13.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
