@@ -49,35 +49,35 @@ function EventForm({ userId, type }: EventFormProps) {
   const router = useRouter();
 
   async function onSubmit(values: z.infer<typeof eventFormSchema>) {
-    //   let uploadedImageUrl = "";
+    let uploadedImageUrl = "";
 
-    //   if (files.length > 0) {
-    //     const uploadedImages = await startUpload(files);
+    if (files.length > 0) {
+      const uploadedImages = await startUpload(files);
 
-    //     if (!uploadedImages) {
-    //       return;
-    //     }
+      if (!uploadedImages) {
+        return;
+      }
 
-    //     uploadedImageUrl = uploadedImages[0].url;
-    //   }
+      uploadedImageUrl = uploadedImages[0].url;
+    }
 
-    //   if (type == "Create") {
-    //     try {
-    //       const newEvent = await createEvent({
-    //         event: { ...values, imageUrl: uploadedImageUrl },
-    //         userId,
-    //         path: "/profile",
-    //       });
-    //       if (newEvent) {
-    //         form.reset();
-    //         router.push(`/event/${newEvent._id}`);
-    //       }
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
+    if (type == "Create") {
+      try {
+        const newEvent = await createEvent({
+          event: { ...values, imageUrl: uploadedImageUrl },
+          userId,
+          path: "/profile",
+        });
+        if (newEvent) {
+          form.reset();
+          router.push(`/event/${newEvent._id}`);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
-    console.log(values);
+    // console.log(values);
   }
 
   return (
