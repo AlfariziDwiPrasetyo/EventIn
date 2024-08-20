@@ -12,7 +12,7 @@ export const createUser = async (user: CreateUserParams) => {
   try {
     await connectToDatabase();
 
-    const newUser = User.create(user);
+    const newUser = await User.create(user);
 
     console.log(newUser);
 
@@ -26,7 +26,7 @@ export const getUserById = async (userId: string) => {
   try {
     await connectToDatabase();
 
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
 
     if (!user) throw new Error("User not found");
 
@@ -40,7 +40,9 @@ export const updateUser = async (clerkId: string, user: UpdateUserParams) => {
   try {
     await connectToDatabase();
 
-    const updatedUser = User.findOneAndUpdate({ clerkId }, user, { new: true });
+    const updatedUser = await User.findOneAndUpdate({ clerkId }, user, {
+      new: true,
+    });
 
     if (!updatedUser) throw new Error("User update failed");
     return JSON.parse(JSON.stringify(updatedUser));
