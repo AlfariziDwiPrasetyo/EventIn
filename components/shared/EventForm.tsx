@@ -19,10 +19,19 @@ import { eventDefaultValues } from "@/constant";
 import Dropdown from "./Dropdown";
 import { Textarea } from "../ui/textarea";
 import { FileUploader } from "./FileUploader";
-import { Calendar, CircleDollarSign, LinkIcon, MapPin } from "lucide-react";
+import {
+  Calendar,
+  CircleDollarSign,
+  LinkIcon,
+  MapPin,
+  Router,
+} from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "../ui/checkbox";
+import { useUploadThing } from "@/lib/uploadthing";
+import { useRouter } from "next/navigation";
+import { createEvent } from "@/lib/actions/event.event";
 
 interface EventFormProps {
   userId: string;
@@ -35,8 +44,39 @@ function EventForm({ userId, type }: EventFormProps) {
     resolver: zodResolver(eventFormSchema),
     defaultValues: eventDefaultValues,
   });
+  const { startUpload } = useUploadThing("imageUploader");
 
-  function onSubmit(values: z.infer<typeof eventFormSchema>) {
+  const router = useRouter();
+
+  async function onSubmit(values: z.infer<typeof eventFormSchema>) {
+    //   let uploadedImageUrl = "";
+
+    //   if (files.length > 0) {
+    //     const uploadedImages = await startUpload(files);
+
+    //     if (!uploadedImages) {
+    //       return;
+    //     }
+
+    //     uploadedImageUrl = uploadedImages[0].url;
+    //   }
+
+    //   if (type == "Create") {
+    //     try {
+    //       const newEvent = await createEvent({
+    //         event: { ...values, imageUrl: uploadedImageUrl },
+    //         userId,
+    //         path: "/profile",
+    //       });
+    //       if (newEvent) {
+    //         form.reset();
+    //         router.push(`/event/${newEvent._id}`);
+    //       }
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   }
+
     console.log(values);
   }
 

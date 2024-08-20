@@ -1,6 +1,6 @@
 "use client";
 
-import React, { startTransition, useState } from "react";
+import React, { startTransition, useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -22,6 +22,10 @@ import {
 
 import { ICategory } from "@/lib/database/models/category.model";
 import { Input } from "../ui/input";
+import {
+  createCategory,
+  getAllCategories,
+} from "@/lib/actions/category.actions";
 
 type DropdownProps = {
   value?: string;
@@ -33,7 +37,21 @@ function Dropdown({ onChangeHandler, value }: DropdownProps) {
 
   const [newCategory, setNewCategory] = useState("");
 
-  const handleAddCategory = () => {};
+  const handleAddCategory = () => {
+    createCategory({ categoryName: newCategory }).then((category) =>
+      setCategories((prevCategories) => [...prevCategories, category])
+    );
+  };
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const categoryList = await getAllCategories();
+
+      categoryList && setCategories(categoryList as ICategory[]);
+    };
+
+    getCategories();
+  }, []);
 
   return (
     <>
@@ -50,7 +68,7 @@ function Dropdown({ onChangeHandler, value }: DropdownProps) {
             ))}
 
           <AlertDialog>
-            <AlertDialogTrigger className="p-medium-14 flex w-full py-3 pl-8 bg-primary text-white rounded-md">
+            <AlertDialogTrigger className="p-medium-14 flex w-full py-3 pl-8 text-primary rounded-md">
               Add New Category
             </AlertDialogTrigger>
             <AlertDialogContent className="bg-grey-50">
