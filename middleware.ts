@@ -5,11 +5,17 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/clerk",
   "/api/webhooks/stripe",
   "/api/uploadthing",
+  "/events/:id",
   "/sign-in(.*)",
   "/sign-up(.*)",
 ]);
 
+const isPrivateRoute = createRouteMatcher(["/events/create"]);
+
 export default clerkMiddleware((auth, request) => {
+  if (isPrivateRoute(request)) {
+    auth().protect();
+  }
   if (!isPublicRoute(request)) {
     auth().protect();
   }

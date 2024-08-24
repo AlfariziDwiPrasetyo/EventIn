@@ -273,27 +273,6 @@ function EventForm({ userId, type }: EventFormProps) {
               </FormItem>
             )}
           />
-
-          <FormField
-            control={form.control}
-            name="url"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Url</FormLabel>
-                <FormControl>
-                  <div className="bg-grey-50 flex-center px-4">
-                    <LinkIcon size={16} />
-                    <Input
-                      className="input-field"
-                      placeholder="Link Whatsapp / Zoom / Any Corelated Link With Event"
-                      {...field}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
         </div>
 
         <Button

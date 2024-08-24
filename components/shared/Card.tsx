@@ -14,7 +14,7 @@ type CardProps = {
 
 const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   return (
-    <div className="group relative flex w-full max-w-lg flex-col overflow-hidden rounded-sm bg-white shadow-md transition-all hover:shadow-lg min-h-[329px]">
+    <div className="group relative flex w-full sm:max-w-lg flex-col overflow-hidden rounded-sm bg-white shadow-md transition-all hover:shadow-lg min-h-[329px]">
       <Link href={`/events/${event._id}`}>
         <Image
           alt="Event Banner"
@@ -25,15 +25,16 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         />
       </Link>
 
-      {/* IS EVENT CREATOR ... */}
-
       <div className="flex flex-col gap-3 px-5 py-2 md:gap-4">
         {!hidePrice && (
           <div className="flex gap-2">
-            <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60">
-              {event.isFree ? "FREE" : `$${event.price}`}
-            </span>
-            <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
+            {event.isFree ? (
+              <span className="p-1 text-green-700 text-xs font-semibold bg-green-500/10 rounded-md">
+                Free
+              </span>
+            ) : null}
+
+            <p className="text-xs font-semibold rounded-md bg-blue-500/10 px-4 py-1 text-blue-500 line-clamp-1">
               {event?.category?.name}
             </p>
           </div>
