@@ -21,7 +21,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           src={event.imageUrl}
           width={1000}
           height={1000}
-          className="max-h-[200px] min-w-[250px]"
+          className="max-h-[200px] object-cover"
         />
       </Link>
 
