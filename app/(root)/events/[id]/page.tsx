@@ -27,7 +27,7 @@ const page = async ({ params: { id } }: SearchParamProps) => {
           <div className="flex flex-col gap-3">
             <h2 className="h2-bold">{event.title}</h2>
             <div className="flex gap-2 ">
-              <p className="p-2 text-sm text-blue-700 font-semibold bg-blue-500/10 rounded-md">
+              <p className="p-2 text-sm text-primary font-semibold bg-blue-500/10 rounded-md">
                 {event.category.name}
               </p>
               {event.isFree ? (
