@@ -59,7 +59,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
         <Separator />
 
-        <div className="flex justify-end py-3">
+        <div className="flex justify-end py-1">
           {event.isFree ? (
             <p className="font-semibold text-primary text-xl">FREE</p>
           ) : (
