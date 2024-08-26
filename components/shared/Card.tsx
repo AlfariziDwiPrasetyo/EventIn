@@ -4,7 +4,10 @@ import Link from "next/link";
 import React from "react";
 import { Separator } from "../ui/separator";
 import Image from "next/image";
-import { MapPin } from "lucide-react";
+import { MapPin, Ellipsis, PenBoxIcon } from "lucide-react";
+import { auth } from "@clerk/nextjs/server";
+import { Button } from "../ui/button";
+import DeleteConfirmation from "./DeleteConfirmation";
 
 type CardProps = {
   event: IEvent;
@@ -13,6 +16,12 @@ type CardProps = {
 };
 
 const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+  const { sessionClaims } = auth();
+
+  const userId = sessionClaims?.userId as string;
+
+  console.log(event);
+
   return (
     <div className="group relative flex w-full sm:max-w-lg flex-col overflow-hidden rounded-sm bg-white shadow-md transition-all hover:shadow-lg min-h-[329px]">
       <Link href={`/events/${event._id}`}>
@@ -24,6 +33,18 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           className="max-h-[200px] object-cover"
         />
       </Link>
+
+      {event?.organizer?._id == userId && (
+        <div className="absolute top-2 right-2">
+          <div className="bg-white flex rounded-md p-2 gap-2">
+            <Link href={`/events/${event._id}/update`}>
+              <PenBoxIcon color="gray" size={16} />
+            </Link>
+
+            <DeleteConfirmation eventId={event._id} />
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-col gap-3 px-5 py-2 md:gap-4">
         {!hidePrice && (
@@ -68,6 +89,9 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
             </p>
           )}
         </div>
+        <Link href={`/events/${event._id}`}>
+          <Button className="w-full">Booking</Button>
+        </Link>
       </div>
     </div>
   );
