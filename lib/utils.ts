@@ -101,5 +101,20 @@ export function removeKeysFromQuery({
 
 export const handleError = (error: unknown) => {
   console.error(error);
-  throw new Error(typeof error === "string" ? error : JSON.stringify(error));
+
+  let errorMessage: string;
+
+  if (typeof error === "string") {
+    errorMessage = error;
+  } else if (error instanceof Error) {
+    errorMessage = error.message;
+  } else {
+    try {
+      errorMessage = JSON.stringify(error);
+    } catch (stringifyError) {
+      errorMessage = "An unknown error occurred";
+    }
+  }
+
+  throw new Error(errorMessage);
 };
