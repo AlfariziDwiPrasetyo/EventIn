@@ -118,21 +118,6 @@ const page = async ({ params: { id }, searchParams }: SearchParamProps) => {
           totalPages={2}
         />
       </section>
-
-      <section className="wrapper flex flex-col gap-8 md:gap-12 my-8">
-        <h2 className="text-4xl font-semibold">{`Other event by ${
-          event.organizer.firstName
-        } ${event.organizer.lastName ? event.organizer.lastName : ""}`}</h2>
-        <Collection
-          data={relatedEvent?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Comeback Later"
-          collectionType="All_Events"
-          limit={6}
-          page={1}
-          totalPages={2}
-        />
-      </section>
     </>
   );
 };
