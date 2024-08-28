@@ -1,3 +1,4 @@
+import CheckoutButton from "@/components/shared/CheckoutButton";
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -94,7 +95,7 @@ const page = async ({ params: { id }, searchParams }: SearchParamProps) => {
                   formatPrice(event.price)
                 )}
               </p>
-              <Button>Buy</Button>
+              <CheckoutButton event={event} />
             </div>
             <Separator />
 
