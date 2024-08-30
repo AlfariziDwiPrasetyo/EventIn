@@ -1,6 +1,8 @@
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
 import { getEventByUser } from "@/lib/actions/event.actions";
+import { getOrdersByUser } from "@/lib/actions/order.action";
+import { IOrder } from "@/lib/database/models/order.model";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import React from "react";
@@ -8,8 +10,10 @@ import React from "react";
 async function page() {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
+  const orders = await getOrdersByUser({ userId, page: 1 });
 
   const organizedEvents = await getEventByUser({ userId, page: 1 });
+  const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
 
   return (
     <>
@@ -23,8 +27,8 @@ async function page() {
       </section>
 
       <section className="wrapper my-8">
-        {/* <Collection
-          data={events?.data}
+        <Collection
+          data={orderedEvents}
           emptyTitle="No Event Ticket Purchased yet"
           emptyStateSubtext="No Worry Plenty Of Exciting Tickets"
           collectionType="All_Events"
@@ -32,7 +36,7 @@ async function page() {
           urlParamName="ordersPage"
           page={1}
           totalPages={2}
-        /> */}
+        />
       </section>
 
       <section className="py-5 md:py-10">
