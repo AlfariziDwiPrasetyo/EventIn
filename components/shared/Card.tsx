@@ -80,18 +80,31 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
         <Separator />
 
-        <div className="flex justify-end py-1">
-          {event.isFree ? (
-            <p className="font-semibold text-primary text-xl">FREE</p>
-          ) : (
-            <p className="font-semibold text-primary text-xl">
-              {formatPrice(event.price as string)}
-            </p>
-          )}
-        </div>
+        {!hidePrice && (
+          <div className="flex justify-end py-1">
+            {event.isFree ? (
+              <p className="font-semibold text-primary text-xl">FREE</p>
+            ) : (
+              <p className="font-semibold text-primary text-xl">
+                {formatPrice(event.price as string)}
+              </p>
+            )}
+          </div>
+        )}
         <Link href={`/events/${event._id}`}>
-          <Button className="w-full">Booking</Button>
+          <Button className="w-full">
+            {hidePrice ? "Event Page" : "Booking"}
+          </Button>
         </Link>
+
+        {hasOrderLink && (
+          <Link
+            href={`/orders?eventId=${event._id}`}
+            className="flex justify-end gap-2"
+          >
+            <p className="text-sm p-2 text-primary">Order Details</p>
+          </Link>
+        )}
       </div>
     </div>
   );

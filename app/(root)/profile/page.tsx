@@ -3,17 +3,25 @@ import { Button } from "@/components/ui/button";
 import { getEventByUser } from "@/lib/actions/event.actions";
 import { getOrdersByUser } from "@/lib/actions/order.action";
 import { IOrder } from "@/lib/database/models/order.model";
+import { SearchParamProps } from "@/types";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import React from "react";
 
-async function page() {
+async function page({ searchParams }: SearchParamProps) {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
-  const orders = await getOrdersByUser({ userId, page: 1 });
 
-  const organizedEvents = await getEventByUser({ userId, page: 1 });
+  const eventsPage = Number(searchParams?.eventsPage) || 1;
+  const ordersPage = Number(searchParams?.ordersPage) || 1;
+
+  const orders = await getOrdersByUser({ userId, page: ordersPage });
   const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
+  const organizedEvents = await getEventByUser({
+    userId,
+    page: eventsPage,
+    limit: 3,
+  });
 
   return (
     <>
@@ -31,11 +39,11 @@ async function page() {
           data={orderedEvents}
           emptyTitle="No Event Ticket Purchased yet"
           emptyStateSubtext="No Worry Plenty Of Exciting Tickets"
-          collectionType="All_Events"
+          collectionType="My_Tickets"
           limit={3}
           urlParamName="ordersPage"
-          page={1}
-          totalPages={2}
+          page={ordersPage}
+          totalPages={orderedEvents.totalPages}
         />
       </section>
 
@@ -53,11 +61,11 @@ async function page() {
           data={organizedEvents?.data}
           emptyTitle="No Event Have Been Created yet"
           emptyStateSubtext="Go Create Event"
-          collectionType="All_Events"
-          limit={6}
+          collectionType="Events_Organized"
+          limit={3}
           urlParamName="eventsPage"
-          page={1}
-          totalPages={2}
+          page={eventsPage}
+          totalPages={organizedEvents?.totalPages}
         />
       </section>
     </>
