@@ -32,6 +32,7 @@
     "react": "^18",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18",
+    "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.52.2",
     "stripe": "^16.9.0",
     "svix": "^1.30.0",

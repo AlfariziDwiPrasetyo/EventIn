@@ -4,8 +4,8 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="border-t flex-center mt-12">
-      <Link className="text-lg p-3" href={"/"}>
-        Eventin
+      <Link className="font-semibold text-muted-foreground p-3 " href={"/"}>
+        Eventin © 2024
       </Link>
     </footer>
   );

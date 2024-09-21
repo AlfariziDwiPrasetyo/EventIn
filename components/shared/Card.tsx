@@ -63,7 +63,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
         <div className="flex flex-col gap-2">
           <Link href={`/events/${event._id}`}>
-            <p className="text-2xl font-semibold line-clamp-2 flex-1 text-black">
+            <p className="text-2xl font-semibold line-clamp-1 flex-1 text-black">
               {event.title}
             </p>
           </Link>
